@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Picker</title>
+  <link rel="stylesheet" href="../bootstrap/bootstrap.css">
+  <link rel="stylesheet" href="../css/index.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+</head>
+
+<body
+  style="min-width: 400px; overflow: hidden; display: flex; flex-direction: column; min-height: 100vh; height: 100vh; max-height: 100vh;">
+
+
+  <header class="flex-grow-0 flex-shrink-0 container-fluid d-flex align-items-center bg-dark text-light"
+    style="height: 60px;">
+    <button class="buttonAsideNav mr-3 p-1 d-md-none btn btn-secondary d-flex align-items-center">
+      <i class="material-icons">menu</i>
+    </button>
+    <span class="navbar-brand">COLOR PICKER</span>
+    <span class="d-none d-sm-block navbar-text text-truncate">Pick some colors</span>
+    <button class="buttonAsideList ml-auto p-1 d-xl-none btn btn-secondary d-flex align-items-center">
+      <i class="material-icons">list</i>
+    </button>
+  </header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- SIDENAV SPACING -->
+  <aside id="asideNav" class="position-fixed pt-3 d-none d-md-block bg-light"
+    style="z-index: 100; min-width: 250px; width: 250px; max-width: 250px; height: calc(100% - 60px - 1.6rem); top: 60px; left: 0px; overflow-x: hidden; overflow-y: auto;">
+    <ul class="list-unstyled" style="overflow-y: auto">
+      <li><small><b class="text-muted px-3">Tools</b></small></li>
+      <li><span class="px-3 py-1 d-block rounded-0 text-left text-light bg-secondary">Color
+          Picker</span></li>
+
+      <li class="mt-3"><small><b class="text-muted px-3">Training Mode</b></small></li>
+      <li><a href="./colorgame.html" class="px-3 py-1 d-block rounded-0 text-left text-dark">Color Game</a>
+      </li>
+      <li><a href="./history.html" class="px-3 py-1 d-block rounded-0 text-left text-dark">History</a>
+      </li>
+    </ul>
+  </aside>
+
+  <main class="position-relative flex-grow-1 flex-shrink-1 container-fluid bg-light overflow-hidden"
+    style="z-index: 90;">
+    <div class="row h-100">
+      <!-- SIDENAV SPACING -->
+      <aside class="col d-none d-md-block" style="min-width: 260px; width: 260px; max-width: 260px;"></aside>
+      <!-- CONTENT AREA -->
+      <section id="mainContent" class="pt-3 h-100 col bg-white">
+        <!-- ######### MAIN CONTENT START ######### -->
+        <div class="p-0 container">
+          <!-- colored div -->
+          <div class="shadow rounded-lg" style="width: 100%; height: 200px; background-color: gainsboro;">
+            <div id="colorbox" class="rounded-lg overflow-hidden w-100 h-100 position-relative">
+              <div id="colorDisplay"></div>
+              <div id="savearea" class="position-absolute">
+                <button id="savebutton" class="p-0 btn btn-secondary btn-dark" style="height: 100%; width: 100%;"><span
+                    style="text-orientation: sideways-right; writing-mode: vertical-rl;"><b>SAVE</b></span></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- invisible inputs for copying to clipboard -->
+          <div class="position-absolute" style="top: 0px; right: -1000px;">
+            <input type="text" id="labelHSV" readOnly>
+            <input type="text" id="labelRGB" readOnly>
+            <input type="text" id="labelHEX" readOnly>
+          </div>
+
+
+
+          <!-- ################ -->
+          <!-- SLIDERS -->
+          <!-- ################ -->
+          <div class="mt-5 d-flex align-items-center">
+            <button id="switchSliders" class="btn btn-outline-dark">Tune</button>
+          </div>
+          <section class="overflow-hidden">
+            <div class="position-relative d-flex flex-nowrap slidersection">
+              <div class="w-100 flex-grow-0 flex-shrink-0">
+                <!-- <div class="mt-3 lineargradient"></div> -->
+                <div class="form-group m-0 mt-2">
+                  <label class="text-truncate d-block m-0 no-user-select">
+                    Hue (<small id="hLabel" class="text-muted"></small>)
+                  </label>
+                  <input type="range" class="custom-range dark hue" id="hSlider" min="0" max="360" value="0">
+                </div>
+
+                <div class="form-group m-0 mt-2">
+                  <label class="text-truncate d-block m-0 no-user-select">
+                    Saturation (<small id="sLabel" class="text-muted"></small>)
+                  </label>
+                  <input type="range" class="custom-range dark sat" id="sSlider" min="0" max="100" value="0">
+                </div>
+
+                <div class="form-group m-0 mt-2">
+                  <label class="text-truncate d-block m-0 no-user-select">
+                    Value (<small id="vLabel" class="text-muted"></small>)
+                  </label>
+                  <input type="range" class="custom-range dark val" id="vSlider" min="0" max="100" value="0">
+                </div>
+              </div>
+              <div style="margin-right: 50px;"></div>
+              <div class="w-100 flex-grow-0 flex-shrink-0">
+                <!-- <div class="mt-3 nolineargradient"></div> -->
+                <div class="form-group m-0 mt-2">
+                  <label class="text-truncate d-block m-0 no-user-select">
+                    R (<small id="rLabel" class="text-muted"></small>)
+                  </label>
+                  <input type="range" class="custom-range dark red" id="rSlider" min="0" max="255" value="0">
+                </div>
+
+                <div class="form-group m-0 mt-2">
+                  <label class="text-truncate d-block m-0 no-user-select">
+                    G (<small id="gLabel" class="text-muted"></small>)
+                  </label>
+                  <input type="range" class="custom-range dark green" id="gSlider" min="0" max="255" value="0">
+                </div>
+
+                <div class="form-group m-0 mt-2">
+                  <label class="text-truncate d-block m-0 no-user-select">
+                    B (<small id="bLabel" class="text-muted"></small>)
+                  </label>
+                  <input type="range" class="custom-range dark blue" id="bSlider" min="0" max="255" value="0">
+                </div>
+              </div>
+            </div>
+          </section>
+
+
+
+
+
+
+
+
+
+
+
+          <!-- ################ -->
+          <!-- INPUTS - HSV -->
+          <!-- ################ -->
+          <div class="mt-5 d-flex">
+            <button id="switchHSV" class="btn btn-outline-dark mr-2">HSV</button>
+            <button
+              class="mr-2 flex-shrink-0 btn btn-dark d-flex align-items-center justify-content-center text-truncate"
+              id="copyHSV" data-toggle="tooltip" data-placement="top" data-trigger="manual" title="Copied"><i
+                class="material-icons" style="font-size: 1.2rem;">file_copy</i></button>
+            <section class="w-100 overflow-hidden">
+              <div class="position-relative d-flex flex-nowrap hsvsection">
+                <div class="w-100 flex-grow-0 flex-shrink-0">
+                  <div class="input-group flex-nowrap ">
+                    <input type="text" class="form-control" placeholder="0 - 360" id="hText">
+                    <input type="text" class="form-control" placeholder="0 - 100" id="sText">
+                    <input type="text" class="form-control" placeholder="0 - 100" id="vText">
+                    <div class="input-group-append">
+                      <button id="hsvSplitGo" class="btn btn-dark" disabled>SHOW</button>
+                    </div>
+                  </div>
+                </div>
+                <div style="margin-right: 50px;"></div>
+                <div class="w-100 flex-grow-0 flex-shrink-0">
+                  <div class="input-group flex-nowrap">
+                    <input type="text" class="form-control" id="hsvText" placeholder="0, 0, 0 - 360, 100, 100"
+                      data-toggle="tooltip" data-placement="top" title="e.g. 360, 100, 100">
+                    <div class="input-group-append">
+                      <button id="hsvFullGo" class="btn btn-dark" disabled>SHOW</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <!-- ################ -->
+          <!-- INPUTS - RGB -->
+          <!-- ################ -->
+          <div class="mt-3 d-flex">
+            <button id="switchRGB" class="mr-2 btn btn-outline-dark">RGB</button>
+            <button
+              class="mr-2 flex-shrink-0 btn btn-dark d-flex align-items-center justify-content-center text-truncate"
+              id="copyRGB" data-toggle="tooltip" data-trigger="manual" data-placement="top" title="Copied"><i
+                class="material-icons" style="font-size: 1.2rem;">file_copy</i></button>
+            <section class="w-100 overflow-hidden">
+              <div class="position-relative d-flex flex-nowrap rgbsection sectionslid">
+                <div class="w-100 flex-grow-0 flex-shrink-0">
+                  <div class="input-group flex-nowrap">
+                    <input type="text" class="form-control" placeholder="0 - 255" id="rText">
+                    <input type="text" class="form-control" placeholder="0 - 255" id="gText">
+                    <input type="text" class="form-control" placeholder="0 - 255" id="bText">
+                    <div class="input-group-append">
+                      <button id="rgbSplitGo" class="btn btn-dark" disabled>SHOW</button>
+                    </div>
+                  </div>
+                </div>
+                <div style="margin-right: 50px;"></div>
+                <div class="w-100 flex-grow-0 flex-shrink-0">
+                  <div class="input-group flex-nowrap">
+                    <input type="text" class="form-control" id="rgbText" placeholder="0, 0, 0 - 255, 255, 255"
+                      data-toggle="tooltip" data-placement="top" data-html="true"
+                      title="e.g. 10, 10, 10 <em>or</em> rgb(0, 0, 0)">
+                    <div class="input-group-append">
+                      <button id="rgbFullGo" class="btn btn-dark" disabled>SHOW</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <!-- ################ -->
+          <!-- INPUTS - HEX -->
+          <!-- ################ -->
+          <div class="mt-3 d-flex">
+            <span class="mr-2 border rounded" style="padding: 6px 12px;">HEX</span>
+            <button
+              class="mr-2 flex-shrink-0 btn btn-dark d-flex align-items-center justify-content-center text-truncate"
+              id="copyHEX" data-toggle="tooltip" data-trigger="manual" data-placement="top" title="Copied"><i
+                class="material-icons" style="font-size: 1.2rem;">file_copy</i></button>
+            <section class="w-100 overflow-hidden">
+              <div class="position-relative d-flex flex-nowrap">
+                <div class="w-100 flex-grow-0 flex-shrink-0">
+                  <div class="input-group flex-nowrap">
+                    <input type="text" class="form-control" id="hexText" placeholder="000000 - FFFFFF"
+                      data-toggle="tooltip" data-placement="top" data-html="true"
+                      title="e.g. #FFF, FFF <em>or</em> FFFFFF">
+                    <div class="input-group-append">
+                      <button id="hexFullGo" class="btn btn-dark" disabled>SHOW</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+        <!-- ######### MAIN CONTENT END ######### -->
+        <!-- <p><b>WARNING</b> Some generic text here.</p>
+        <p><b>Note</b> - HSL sliders are not provided because they make no sense to me.</p>
+        <p>[READ] HSL sliders are not provided because they make no sense to me.</p>
+        <p class="small">DISCLAIMER: OCCASIONALLY, VALUES WILL BE DISPLAYED INCORRECTLY. USE THIS PRODUCT AT YOUR OWN
+          DISCRETION.</p> -->
+
+      </section>
+      <!-- COLOR PALETTE LIST SPACING -->
+      <aside class="col d-none d-xl-block" style="min-width: 260px; width: 260px; max-width: 260px;"></aside>
+    </div>
+  </main>
+
+  <!-- COLOR PALETTE LIST -->
+  <aside id="asideList" class="position-fixed col d-none d-xl-block col bg-light"
+    style="z-index: 110; min-width: 250px; width: 250px; max-width: 250px; height: calc(100% - 60px - 1.6rem); top: 60px; right: 0px; overflow-x: hidden; overflow-y: auto;">
+    <div id="savedColorsRegion" class="row p-1">
+      <!-- <button class="w-100 p-2 border border-0">asdf</button> -->
+    </div>
+  </aside>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <footer class="container-fluid flex-grow-0 flex-shrink-0 border-top bg-light" style="height: 1.6rem;">
+    <div class="row h-100">
+      <div class="col d-flex align-items-center text-muted">
+        <p id="windowMessage" class="m-0 text-truncate small">::</p>
+      </div>
+      <div class="col d-flex align-items-center text-muted" style="max-width: 250px;">
+        <p class="m-0 text-truncate small">&copy; 2019</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="position-fixed" style="z-index: 100000; bottom: 0px; right: 0px; opacity: 0.7;">
+    <p class="d-block d-sm-none bg-dark text-light py-0 px-2 text-nowrap"><b>(0px &raquo; mobile sm)</b></p>
+    <p class="d-none d-sm-block d-md-none bg-danger text-light py-0 px-2 text-nowrap"><b>sm (576px &raquo; mobile
+        lg)</b></p>
+    <p class="d-none d-md-block d-lg-none bg-warning py-0 px-2 text-nowrap"><b>md (768px &raquo; tablet)</b></p>
+    <p class="d-none d-lg-block d-xl-none bg-success text-light py-0 px-2 text-nowrap"><b>lg (992px &raquo;
+        laptop)</b></p>
+    <p class="d-none d-xl-block bg-primary text-light py-0 px-2 text-nowrap"><b>xl (1200px &raquo; desktop)</b></p>
+  </div>
+
+
+  <div class="backdrop d-none"
+    style="z-index: var(--zindex); position: absolute; top: 0px; left: 0px; width: 100vw; height: 100vh; background-color: rgba(0, 0, 0, 0.3); min-width: 400px;">
+    <header class="flex-grow-0 flex-shrink-0 container-fluid d-flex align-items-center text-light"
+      style="height: 60px;">
+      <button class="buttonAsideNav mr-3 p-1 d-md-none btn btn-secondary d-flex align-items-center">
+      <i class="material-icons">menu</i>
+      </button>
+      <span class="navbar-brand">COLOR PICKER</span>
+      <span class="d-none d-sm-block navbar-text text-truncate">Pick some colors</span>
+      <button class="buttonAsideList ml-auto p-1 d-xl-none btn btn-secondary d-flex align-items-center">
+        <i class="material-icons">list</i>
+      </button>
+    </header>
+  </div>
+
+
+  <script src="../bootstrap/jquery.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
+  <script src="../bootstrap/bootstrap.bundle.js"></script>
+  <script src="./index.js"></script>
+
+
+</body>
+
+</html>
+
+<!-- 
+      style="z-index: 99; position: absolute; top: 60px; left: 0px; width: 100vw; height: calc(100vh - 60px); background-color: rgba(0, 0, 0, 0.3);">
+ -->

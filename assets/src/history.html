@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Picker</title>
+  <link rel="stylesheet" href="../bootstrap/bootstrap.css">
+  <link rel="stylesheet" href="../css/index.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="../chartjs/Chart.css">
+  <style>
+    button:hover {
+      cursor: default;
+    }
+  </style>
+</head>
+
+<body
+  style="min-width: 400px; overflow: hidden; display: flex; flex-direction: column; min-height: 100vh; height: 100vh; max-height: 100vh;">
+
+
+  <header class="flex-grow-0 flex-shrink-0 container-fluid d-flex align-items-center bg-dark text-light"
+    style="height: 60px;">
+    <button class="buttonAsideNav mr-3 p-1 d-md-none btn btn-secondary d-flex align-items-center">
+      <i class="material-icons">menu</i>
+    </button>
+    <span class="navbar-brand">COLOR PICKER</span>
+    <span class="d-none d-sm-block navbar-text text-truncate">Pick some colors</span>
+    <button class="buttonAsideList ml-auto p-1 d-xl-none btn btn-secondary d-flex align-items-center">
+      <i class="material-icons">list</i>
+    </button>
+  </header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- SIDENAV SPACING -->
+  <aside id="asideNav" class="position-fixed pt-3 d-none d-md-block bg-light"
+    style="z-index: 100; min-width: 250px; width: 250px; max-width: 250px; height: calc(100% - 60px - 1.6rem); top: 60px; left: 0px; overflow-x: hidden; overflow-y: auto;">
+    <ul class="list-unstyled" style="overflow-y: auto">
+      <li><small><b class="text-muted px-3">Tools</b></small></li>
+      <li><a href="./index.html" class="px-3 py-1 d-block rounded-0 text-left text-dark">Color Picker</a>
+
+      <li class="mt-3"><small><b class="text-muted px-3">Training Mode</b></small></li>
+      <li><a href="./colorgame.html" class="px-3 py-1 d-block rounded-0 text-left text-dark">Color Game</a>
+      </li>
+
+      <li><span class="px-3 py-1 d-block rounded-0 text-left text-light bg-secondary">History</span></li>
+      </li>
+    </ul>
+  </aside>
+
+  <main class="position-relative flex-grow-1 flex-shrink-1 container-fluid bg-light overflow-hidden"
+    style="z-index: 90;">
+    <div class="row h-100">
+      <!-- SIDENAV SPACING -->
+      <aside class="col d-none d-md-block" style="min-width: 260px; width: 260px; max-width: 260px;"></aside>
+      <!-- CONTENT AREA -->
+      <section id="mainContent" class="pt-3 h-100 col bg-white">
+        <!-- ######### MAIN CONTENT START ######### -->
+        <div class="p-0 container">
+
+          <div class="contentcontent flex-grow-1 flex-shrink-1 overflow-hidden container bg-dark">
+            <canvas id="myChart" width="4" height="1"></canvas>
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        <!-- ######### MAIN CONTENT END ######### -->
+
+
+      </section>
+      <!-- COLOR PALETTE LIST SPACING -->
+      <aside class="col d-none d-xl-block" style="min-width: 260px; width: 260px; max-width: 260px;"></aside>
+    </div>
+  </main>
+
+  <!-- COLOR PALETTE LIST -->
+  <aside id="asideList" class="position-fixed col d-none d-xl-block col bg-light"
+    style="z-index: 110; min-width: 250px; width: 250px; max-width: 250px; height: calc(100% - 60px - 1.6rem); top: 60px; right: 0px; overflow-x: hidden; overflow-y: auto;">
+    <div id="savedColorsRegion" class="row p-1">
+      <!-- <button class="w-100 p-2 border border-0">asdf</button> -->
+    </div>
+  </aside>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <footer class="container-fluid flex-grow-0 flex-shrink-0 border-top bg-light" style="height: 1.6rem;">
+    <div class="row h-100">
+      <div class="col d-flex align-items-center text-muted">
+        <p id="windowMessage" class="m-0 text-truncate small">::</p>
+      </div>
+      <div class="col d-flex align-items-center text-muted" style="max-width: 250px;">
+        <p class="m-0 text-truncate small">&copy; 2019</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="position-fixed" style="z-index: 100000; bottom: 0px; right: 0px; opacity: 0.7;">
+    <p class="d-block d-sm-none bg-dark text-light py-0 px-2 text-nowrap"><b>(0px &raquo; mobile sm)</b></p>
+    <p class="d-none d-sm-block d-md-none bg-danger text-light py-0 px-2 text-nowrap"><b>sm (576px &raquo; mobile
+        lg)</b></p>
+    <p class="d-none d-md-block d-lg-none bg-warning py-0 px-2 text-nowrap"><b>md (768px &raquo; tablet)</b></p>
+    <p class="d-none d-lg-block d-xl-none bg-success text-light py-0 px-2 text-nowrap"><b>lg (992px &raquo;
+        laptop)</b></p>
+    <p class="d-none d-xl-block bg-primary text-light py-0 px-2 text-nowrap"><b>xl (1200px &raquo; desktop)</b></p>
+  </div>
+
+
+  <div class="backdrop d-none"
+    style="z-index: var(--zindex); position: absolute; top: 0px; left: 0px; width: 100vw; height: 100vh; background-color: rgba(0, 0, 0, 0.3); min-width: 400px;">
+    <header class="flex-grow-0 flex-shrink-0 container-fluid d-flex align-items-center text-light"
+      style="height: 60px;">
+      <button class="buttonAsideNav mr-3 p-1 d-md-none btn btn-secondary d-flex align-items-center">
+        <i class="material-icons">menu</i>
+      </button>
+      <span class="navbar-brand">COLOR PICKER</span>
+      <span class="d-none d-sm-block navbar-text text-truncate">Pick some colors</span>
+      <button class="buttonAsideList ml-auto p-1 d-xl-none btn btn-secondary d-flex align-items-center">
+        <i class="material-icons">list</i>
+      </button>
+    </header>
+  </div>
+
+  <script src="../bootstrap/jquery.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
+  <script src="../bootstrap/bootstrap.bundle.js"></script>
+
+  <script src="../chartjs/Chart.js"></script>
+  <script src="./history.js"></script>
+</body>
+
+</html>
+
+<!-- 
+      style="z-index: 99; position: absolute; top: 60px; left: 0px; width: 100vw; height: calc(100vh - 60px); background-color: rgba(0, 0, 0, 0.3);">
+ -->

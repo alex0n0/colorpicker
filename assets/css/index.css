@@ -1,0 +1,150 @@
+div.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: yellow;
+}
+
+#colorDisplay {
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  -webkit-clip-path: polygon(100% 0, 100% 100%, 100% 100%, 100% 100%, 0% 100%, 0 0);
+          clip-path: polygon(100% 0, 100% 100%, 100% 100%, 100% 100%, 0% 100%, 0 0);
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.slidersection, .hsvsection, .rgbsection {
+  -webkit-transition: 0.5s left;
+  transition: 0.5s left;
+  left: 0%;
+}
+
+.slidersection.sectionslid, .hsvsection.sectionslid, .rgbsection.sectionslid {
+  left: calc(-100% - 50px);
+}
+
+.lineargradient {
+  height: 4px;
+  background: -webkit-gradient(linear, left top, right top, from(#FF0000), color-stop(#FF8000), color-stop(#FFFF00), color-stop(#80FF00), color-stop(#00FF00), color-stop(#00FF80), color-stop(#00FFFF), color-stop(#0080FF), color-stop(#0000FF), color-stop(#8000FF), color-stop(#FF00FF), to(#FF0080));
+  background: linear-gradient(90deg, #FF0000, #FF8000, #FFFF00, #80FF00, #00FF00, #00FF80, #00FFFF, #0080FF, #0000FF, #8000FF, #FF00FF, #FF0080);
+}
+
+.nolineargradient {
+  height: 4px;
+}
+
+#colorbox #savearea {
+  right: -60px;
+  top: 0px;
+  height: 100%;
+  width: 40px;
+  -webkit-transition: 0.5s right;
+  transition: 0.5s right;
+}
+
+#colorbox:hover #savearea {
+  right: 0px;
+}
+
+input[type="text"]::-webkit-input-placeholder {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+input[type="text"]:-ms-input-placeholder {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+input[type="text"]::-ms-input-placeholder {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+input[type="text"]::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+input[type="text"]:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.no-user-select {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+button:focus {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  outline: 0;
+}
+
+#mainContent {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#mainContent.open {
+  overflow-y: hidden;
+}
+
+.dark.custom-range:focus::-webkit-slider-thumb {
+  -webkit-box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
+          box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
+}
+
+.dark.custom-range::-webkit-slider-thumb {
+  background-color: #343a40;
+}
+
+.dark.custom-range::-webkit-slider-thumb:active {
+  background-color: rgba(52, 58, 64, 0.5);
+}
+
+.dark.custom-range::-webkit-slider-runnable-track {
+  background-color: #e6e6e6;
+}
+
+.hue.dark.custom-range::-webkit-slider-runnable-track {
+  background: -webkit-gradient(linear, left top, right top, from(#FF0000), color-stop(#FF8000), color-stop(#FFFF00), color-stop(#80FF00), color-stop(#00FF00), color-stop(#00FF80), color-stop(#00FFFF), color-stop(#0080FF), color-stop(#0000FF), color-stop(#8000FF), color-stop(#FF00FF), to(#FF0080));
+  background: linear-gradient(90deg, #FF0000, #FF8000, #FFFF00, #80FF00, #00FF00, #00FF80, #00FFFF, #0080FF, #0000FF, #8000FF, #FF00FF, #FF0080);
+}
+
+.sat.dark.custom-range::-webkit-slider-runnable-track {
+  background: -webkit-gradient(linear, left top, right top, from(#FFFFFF), to(var(--satcolor)));
+  background: linear-gradient(90deg, #FFFFFF, var(--satcolor));
+}
+
+.val.dark.custom-range::-webkit-slider-runnable-track {
+  background: -webkit-gradient(linear, left top, right top, from(#000000), color-stop(#1A1A1A), color-stop(#333333), color-stop(#4D4D4D), color-stop(#666666), color-stop(#808080), color-stop(#999999), color-stop(#CCCCCC), color-stop(#E6E6E6), to(#FFFFFF));
+  background: linear-gradient(90deg, #000000, #1A1A1A, #333333, #4D4D4D, #666666, #808080, #999999, #CCCCCC, #E6E6E6, #FFFFFF);
+}
+
+.red.dark.custom-range::-webkit-slider-runnable-track {
+  background: -webkit-gradient(linear, left top, right top, from(#000000), to(#FF0000));
+  background: linear-gradient(90deg, #000000, #FF0000);
+}
+
+.green.dark.custom-range::-webkit-slider-runnable-track {
+  background: -webkit-gradient(linear, left top, right top, from(#000000), to(#00FF00));
+  background: linear-gradient(90deg, #000000, #00FF00);
+}
+
+.blue.dark.custom-range::-webkit-slider-runnable-track {
+  background: -webkit-gradient(linear, left top, right top, from(#000000), to(#0000FF));
+  background: linear-gradient(90deg, #000000, #0000FF);
+}
+
+.dark.custom-range:disabled::-webkit-slider-thumb {
+  background-color: #bdbdbd;
+}
+/*# sourceMappingURL=index.css.map */
